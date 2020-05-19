@@ -3,6 +3,7 @@ package com.livingasone.nasaimageviewer.photoservice.apis;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Base64;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,8 +46,9 @@ public class PhotoServiceApi {
 			                                @RequestParam("img_src") String imgSrc) throws Exception {
 		logger.info("getImage: {}-{}-{}", name, id, imgSrc );
 		File file = service.getPhoto(imgSrc);
+		byte[] encoded = Base64.getEncoder().encode(Files.readAllBytes(file.toPath()));
 		return ResponseEntity.ok()
 				.contentType(MediaType.IMAGE_JPEG)
-				.body(Files.readAllBytes(file.toPath()));
+				.body(encoded);
 	}
 }

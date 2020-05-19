@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Main Page</title>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+</head>
+<body ng-app="nasa.photoservice">
+<hr/>
+<div class="container" ng-controller="PhotoController">
+    <div class="row">        
+        <label>Name</label>       <input type="text" ng-model="photoDto.name" class="input-sm spacing"/>
+        <label>Earth Date</label> <input type="text" ng-model="photoDto.date" class="input-sm spacing"/>                                    
+        <button ng-click="displayPhotos()" class="btn btn-sm btn-info">Display Photos</button>
+    </div>
+    <hr/>
+    <!--  
+    <div class="row">
+        <p>{{allPhotos | json}}</p>
+    </div>
+    -->
+    <hr/>
+    
+    <table>
+    <tr ng-repeat="photo in allPhotos">
+    	<td>{{$index}}</td>
+    	<td>{{photo.id}}</td>
+    	<td>{{photo.imgSrc}}
+    	<td>{{photo.earthDate}}</td>
+    	<td>{{photo.rover.name}}</td>
+    	<td><input type="hidden" />
+    		<input type="button" id="b1" value="Display" ng-click="displayPhoto(photo);" class="btn btn-sm btn-info" />
+    	</td>
+  	</tr>
+	</table>
+	<img ng-src="data:image/jpeg;base64,{{photoImage}}" id="photo-id"/>
+</div>
+</body>
+<script src="/js/lib/angular.min.js"></script>
+<script src="/js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="/js/app/app.js"></script>
+<script src="/js/app/PhotoController.js"></script>
+<script src="/js/app/PhotoService.js"></script>
+<link rel="stylesheet" href="/css/lib/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/app/app.css"/>
+</html>
