@@ -35,6 +35,7 @@ public class PhotoServiceImpl implements PhotoService {
 	private NasaRestClient client;
 	
 	public PhotoList getPhotos(String name, String date) throws Exception {
+		logger.info("getPhotos starts...");
 		return client.getPhotoList(name, date);
 	}
 	

@@ -38,7 +38,7 @@ public class NasaRestClient extends RestTemplateClient {
 		        								    	date);
 			
 		logger.info("Making the call with URL: " + builder.toUriString());			
-	    ResponseEntity<PhotoList> response = rest.exchange(builder.toUriString(), HttpMethod.GET, null, PhotoList.class);    		    
+		ResponseEntity<PhotoList> response = makeGetCallWithExchange(builder.toUriString(), PhotoList.class);
 	    return response.getBody();
 	}
 	
@@ -48,7 +48,7 @@ public class NasaRestClient extends RestTemplateClient {
 	    headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));	
 		HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 		
-		ResponseEntity<Resource> responseEntity = rest.exchange(url, HttpMethod.GET, httpEntity, Resource.class );
+		ResponseEntity<Resource> responseEntity = makeGetCallWithExchange(url, Resource.class);
 		
 		logger.info("Size of responseEntity: " + responseEntity.getBody().getInputStream().available());
 	    return responseEntity.getBody().getInputStream();

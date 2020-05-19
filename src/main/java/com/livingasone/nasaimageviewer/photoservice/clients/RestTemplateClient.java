@@ -19,6 +19,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
@@ -64,5 +66,11 @@ public abstract class RestTemplateClient {
 	    requestFactory.setConnectionRequestTimeout(AppConstants.REST_CLIENT_CONNECTION_TIMEOUT);
 	    requestFactory.setReadTimeout(AppConstants.REST_CLIENT_CONNECTION_TIMEOUT);
 		rest.setRequestFactory(requestFactory);
+	}
+	
+	public <T> ResponseEntity<T> makeGetCallWithExchange(String url, Class c) {
+		logger.info("makeGetCallWithExchange");
+		ResponseEntity<T> response = rest.exchange(url, HttpMethod.GET, null, c);  
+		return response;
 	}
 }
