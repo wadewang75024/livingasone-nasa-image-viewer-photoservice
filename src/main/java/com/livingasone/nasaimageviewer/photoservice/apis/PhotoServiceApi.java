@@ -1,7 +1,6 @@
 package com.livingasone.nasaimageviewer.photoservice.apis;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Base64;
 
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.livingasone.nasaimageviewer.photoservice.clients.NasaRestClient;
 import com.livingasone.nasaimageviewer.photoservice.data.PhotoList;
 import com.livingasone.nasaimageviewer.photoservice.services.PhotoService;
 import com.livingasone.nasaimageviewer.photoservice.exceptions.BusinessException;
